@@ -16,10 +16,9 @@ cp $PROJECT_ROOT/build/libs/*.jar $JAR_FILE
 echo "> $JAR_NAME에 실행권한 추가"
 chmod +x $JAR_NAME
 
-export AWS_url=$(aws ssm get-parameters --region ap-northeast-2 --names url --query Parameters[0].Value | sed 's/"//g')
-export AWS_username=$(aws ssm get-parameters --region ap-northeast-2 --names username --query Parameters[0].Value | sed 's/"//g')
-export AWS_password=$(aws ssm get-parameters --region ap-northeast-2 --names password --query Parameters[0].Value | sed 's/"//g')
-
+export AWS_url=$(echo “$(aws ssm get-parameters —url /aaa/bbb/password —with-decryption —query Parameters[0].Value)” | sed -e ’s/^”//‘ -e ’s/“$//‘)
+export AWS_username=$(echo “$(aws ssm get-parameters —username /aaa/bbb/password —with-decryption —query Parameters[0].Value)” | sed -e ’s/^”//‘ -e ’s/“$//‘)
+export AWS_password=$(echo “$(aws ssm get-parameters —password /aaa/bbb/password —with-decryption —query Parameters[0].Value)” | sed -e ’s/^”//‘ -e ’s/“$//‘)
 
 # jar 파일 실행
 echo "$TIME_NOW > $JAR_FILE 파일 실행" >> $DEPLOY_LOG
