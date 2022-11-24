@@ -1,10 +1,4 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${AWS_url}
-    username: ${AWS_username}
-    password: ${AWS_password}
-
   config:
     import:
       classpath:./admin-number.yml,
