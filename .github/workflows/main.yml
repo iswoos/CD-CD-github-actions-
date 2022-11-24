@@ -33,6 +33,18 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11'
+
+# create application.yml
+    - name: make application.yml
+#       if: contains(github.ref, 'leedev') # branch가 leedev 일 때, 나머지는 위와 동일
+      run: |
+        mkdir -p ./src/main/resources
+        cd ./src/main/resources       
+        touch ./application.properties
+        echo "${{ secrets.APPLI }}" > ./application.yml
+      shell: bash
+        
+
         
     - name: Run chmod to make gradlew executable
       run: chmod +x ./gradlew
