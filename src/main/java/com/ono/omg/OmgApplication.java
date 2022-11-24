@@ -12,5 +12,4 @@ public class OmgApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OmgApplication.class, args);
 	}
-
 }
